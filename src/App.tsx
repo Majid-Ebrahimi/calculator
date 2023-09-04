@@ -6,38 +6,11 @@ import MainCalculator from "./components/layouts/MainCalculator";
 
 function App() {
     const [value,setValue] = useState("0")
-    let left = value
-    let right = value
+    const [calculationValue,setCalculationValue] = useState<number>(0)
 
-    function setValue0(){
-        setValue(value.concat('0'))
-    }
-    function setValue1(){
-        setValue(value.concat('1'))
-            }
-    function setValue2(){
-        setValue(value.concat('2'))
-    }
-    function setValue3(){
-        setValue(value.concat('3'))
-    }
-    function setValue4(){
-        setValue(value.concat('4'))
-    }
-    function setValue5(){
-        setValue(value.concat('5'))
-    }
-    function setValue6(){
-        setValue(value.concat('6'))
-    }
-    function setValue7(){
-        setValue(value.concat('7'))
-    }
-    function setValue8(){
-        setValue(value.concat('8'))
-    }
-    function setValue9(){
-        setValue(value.concat('9'))
+    function setValueNumber(num: string){
+        setValue(value.concat(num))
+        // setCalculationValue(calculationValue.concat(parseInt(num)))
     }
 
     function deleteHandler (){
@@ -46,42 +19,45 @@ function App() {
 
     function deleteAllHandler(){
         setValue("0")
+        // setCalculationValue([0])
     }
 
     function plusHandler(){
-        left = value
-
-        setValue(value.concat('+'))
+        const len = value.length -1
+        if(!value.endsWith('+')) {
+            setValue(value.concat('+'))
+        } else{
+            console.log(value.substring(len))
+        }
+        console.log(parseInt(value) + parseInt(value.substring(len)))
+        setCalculationValue(parseInt(value) + parseInt(value.substring(len)))
     }
 
     function equalHandler(){
-        right = value.substring(left.length + 1 ,value.length)
-        let tempLeft = parseInt(left)
-        let tempRight = parseInt(right)
-        const tempEqual = tempRight.toString().concat(tempLeft.toString())
-        setValue(tempEqual)
+        setValue(calculationValue.toString())
+
     }
 
     return (
-        <Layout>
-            <CalculationBox value={value}/>
-            <MainCalculator
-                on0={setValue0}
-                on1={setValue1}
-                on2={setValue2}
-                on3={setValue3}
-                on4={setValue4}
-                on5={setValue5}
-                on6={setValue6}
-                on7={setValue7}
-                on8={setValue8}
-                on9={setValue9}
-                onPlus={plusHandler}
-                onEqual={equalHandler}
-                onDelete={deleteHandler}
-                onDeleteAll={deleteAllHandler}
-            />
-        </Layout>
+            <Layout>
+                <CalculationBox value={value}/>
+                <MainCalculator
+                    on0={()=>{setValueNumber('0')}}
+                    on1={()=>{setValueNumber('1')}}
+                    on2={()=>{setValueNumber('2')}}
+                    on3={()=>{setValueNumber('3')}}
+                    on4={()=>{setValueNumber('4')}}
+                    on5={()=>{setValueNumber('5')}}
+                    on6={()=>{setValueNumber('6')}}
+                    on7={()=>{setValueNumber('7')}}
+                    on8={()=>{setValueNumber('8')}}
+                    on9={()=>{setValueNumber('9')}}
+                    onPlus={plusHandler}
+                    onEqual={equalHandler}
+                    onDelete={deleteHandler}
+                    onDeleteAll={deleteAllHandler}
+                />
+            </Layout>
     );
 }
 
