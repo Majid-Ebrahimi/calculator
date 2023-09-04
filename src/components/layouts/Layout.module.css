@@ -1,0 +1,11 @@
+.div {
+    width: 33%;
+    background-color: #565656;
+
+}
+
+@media only screen and (max-width: 1000px){
+    .div{
+        width: 100%;
+    }
+}

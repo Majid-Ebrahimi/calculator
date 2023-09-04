@@ -1,0 +1,23 @@
+.main {
+    padding: 1rem 1rem;
+    background-color: blue;
+}
+
+.gridContainer {
+    display: grid;
+    gap: 10px;
+    background-color: #2196F3;
+    padding: 10px;
+}
+
+.item13 {
+    grid-column: 1/ span 4;
+    grid-row: 5;
+}
+
+.gridContainer button {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 20px;
+    font-size: 2rem;
+}
