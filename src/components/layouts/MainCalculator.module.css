@@ -21,3 +21,11 @@
     padding: 20px;
     font-size: 2rem;
 }
+
+.gridContainer button:active {
+    background-color: rgba(189, 222, 222, 0.8);
+}
+
+.gridContainer button:hover {
+    border-color: rgba(0, 255, 255, 0.8);
+}
