@@ -1,6 +1,7 @@
 .div {
     width: 33%;
     background-color: #565656;
+    border-radius: 1rem;
 }
 
 @media only screen and (max-width: 1000px){

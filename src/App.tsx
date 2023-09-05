@@ -3,20 +3,16 @@ import './App.css';
 import Layout from "./components/layouts/Layout";
 import CalculationBox from "./components/layouts/CalculationBox";
 import MainCalculator from "./components/layouts/MainCalculator";
-import layout from "./components/layouts/Layout";
-import {subscribe} from "diagnostics_channel";
+
+import CalculatorNumber from "./components/ui/CalculatorNumber";
 
 let resultTemp: number
 let firstValue: number
-let firstValueLength: number
 let tempOperator: string
 
 function App() {
     const [value, setValue] = useState("0")
 
-
-
-    // const [calculationValue,setCalculationValue] = useState<number>(0)
     enum operator {
         addition = "+",
         subtraction = "-",
@@ -41,80 +37,26 @@ function App() {
     }
 
     function operatorHandler(opr: string) {
-        if (value.endsWith(operator.addition) || value.endsWith(operator.subtraction) || value.endsWith(operator.multiplication) || value.endsWith(operator.division)) {
-        } else {
+        if (!(value.endsWith(operator.addition) || value.endsWith(operator.subtraction) || value.endsWith(operator.multiplication) || value.endsWith(operator.division))) {
             setValue(value.concat(opr))
+            firstValue = parseInt(value)
+            tempOperator = opr
         }
-
-        if(opr === operator.addition){
-            firstValue = parseInt(value)
-            tempOperator = operator.addition
-        } else if (opr===operator.subtraction){
-            firstValue = parseInt(value)
-            tempOperator = operator.subtraction
-        }else if(opr ===operator.multiplication){
-            firstValue = parseInt(value)
-            tempOperator = operator.multiplication
-        }
-        else if(opr===operator.division){
-            firstValue = parseInt(value)
-            tempOperator = operator.division
-        }
-
-        console.log(firstValue)
-        console.log(firstValueLength)
-
     }
 
-    // function additionHandler(){
-    //     const len = value.length -1
-    //     if(!value.endsWith(operator.addition || operator.subtraction || operator.multiplication || operator.division)) {
-    //         setValue(value.concat(operator.addition))
-    //     } else{
-    //         console.log(value.substring(len))
-    //     }
-    //     console.log(parseInt(value) + parseInt(value.substring(len)))
-    //     setCalculationValue(parseInt(value) + parseInt(value.substring(len)))
-    // }
-
-
-
-
     function resultHandler() {
-        console.log(tempOperator)
-        if(tempOperator === operator.addition){
-            const secondValue = parseInt(value.substring(value.indexOf('+') + 1,value.length))
-            value.indexOf('+')
+
+        const secondValue = parseInt(value.substring(value.indexOf(tempOperator) + 1, value.length))
+        if (tempOperator === operator.addition) {
             resultTemp = firstValue + secondValue
-            console.log(firstValue)
-            console.log(secondValue)
-            console.log(resultTemp)
-            setValue(resultTemp.toString())
-        }else if(tempOperator === operator.subtraction){
-            const secondValue = parseInt(value.substring(value.indexOf('-') + 1,value.length))
-            value.indexOf('-')
+        } else if (tempOperator === operator.subtraction) {
             resultTemp = firstValue - secondValue
-            console.log(firstValue)
-            console.log(secondValue)
-            console.log(resultTemp)
-            setValue(resultTemp.toString())
-        }else if(tempOperator === operator.multiplication){
-            const secondValue = parseInt(value.substring(value.indexOf('*') + 1,value.length))
-            value.indexOf('*')
+        } else if (tempOperator === operator.multiplication) {
             resultTemp = firstValue * secondValue
-            console.log(firstValue)
-            console.log(secondValue)
-            console.log(resultTemp)
-            setValue(resultTemp.toString())
-        }else if(tempOperator === operator.division){
-            const secondValue = parseInt(value.substring(value.indexOf('/') + 1,value.length))
-            console.log(value.indexOf('/'))
+        } else if (tempOperator === operator.division) {
             resultTemp = firstValue / secondValue
-            console.log(firstValue)
-            console.log(secondValue)
-            console.log(resultTemp)
-            setValue(resultTemp.toString())
         }
+        setValue(resultTemp.toString())
 
     }
 
@@ -122,52 +64,53 @@ function App() {
         <Layout>
             <CalculationBox text={value}/>
             <MainCalculator
-                on0={() => {
-                    setValueNumber('0')
-                }}
-                on1={() => {
-                    setValueNumber('1')
-                }}
-                on2={() => {
-                    setValueNumber('2')
-                }}
-                on3={() => {
-                    setValueNumber('3')
-                }}
-                on4={() => {
-                    setValueNumber('4')
-                }}
-                on5={() => {
-                    setValueNumber('5')
-                }}
-                on6={() => {
-                    setValueNumber('6')
-                }}
-                on7={() => {
-                    setValueNumber('7')
-                }}
-                on8={() => {
-                    setValueNumber('8')
-                }}
-                on9={() => {
-                    setValueNumber('9')
-                }}
-                onAdd={() => {
-                    operatorHandler(operator.addition)
-                }}
-                onSub={() => {
-                    operatorHandler(operator.subtraction)
-                }}
-                onMul={() => {
-                    operatorHandler(operator.multiplication)
-                }}
-                onDiv={() => {
-                    operatorHandler(operator.division)
-                }}
                 onRes={resultHandler}
                 onDelete={deleteHandler}
                 onDeleteAll={deleteAllHandler}
-            />
+            >
+                <CalculatorNumber onCalNumber={() => {
+                    setValueNumber('7')
+                }} calNumber={7}/>
+                <CalculatorNumber onCalNumber={() => {
+                    setValueNumber('8')
+                }} calNumber={8}/>
+                <CalculatorNumber onCalNumber={() => {
+                    setValueNumber('9')
+                }} calNumber={9}/>
+                <CalculatorNumber onCalNumber={() => {
+                    operatorHandler(operator.multiplication)
+                }} calNumber={operator.multiplication}/>
+                <CalculatorNumber onCalNumber={() => {
+                    setValueNumber('4')
+                }} calNumber={4}/>
+                <CalculatorNumber onCalNumber={() => {
+                    setValueNumber('5')
+                }} calNumber={5}/>
+                <CalculatorNumber onCalNumber={() => {
+                    setValueNumber('6')
+                }} calNumber={6}/>
+                <CalculatorNumber onCalNumber={() => {
+                    operatorHandler(operator.division)
+                }} calNumber={operator.division}/>
+                <CalculatorNumber onCalNumber={() => {
+                    setValueNumber('1')
+                }} calNumber={1}/>
+                <CalculatorNumber onCalNumber={() => {
+                    setValueNumber('2')
+                }} calNumber={2}/>
+                <CalculatorNumber onCalNumber={() => {
+                    setValueNumber('3')
+                }} calNumber={3}/>
+                <CalculatorNumber onCalNumber={() => {
+                    operatorHandler(operator.subtraction)
+                }} calNumber={operator.subtraction}/>
+                <CalculatorNumber onCalNumber={() => {
+                    setValueNumber('0')
+                }} calNumber={0}/>
+                <CalculatorNumber onCalNumber={() => {
+                    operatorHandler(operator.addition)
+                }} calNumber={operator.addition}/>
+            </MainCalculator>
         </Layout>
     );
 }
