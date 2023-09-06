@@ -16,6 +16,7 @@ function App() {
     const [value, setValue] = useState("0")
 
     enum operator {
+        //TODO: fix minus bug
         addition = "+",
         subtraction = "-",
         multiplication = "*",
@@ -92,9 +93,17 @@ function App() {
             <CalculationBox text={value}/>
             <MainCalculator
                 onRes={resultHandler}
-                onDelete={deleteHandler}
-                onDeleteAll={deleteAllHandler}
             >
+                <CalculatorNumber onCalNumber={
+                    deleteAllHandler
+                } calNumber={"C"}/>
+                <CalculatorNumber onCalNumber={
+                    deleteHandler
+                } calNumber={"X"}/>
+                <CalculatorNumber onCalNumber={() => {
+                }} calNumber={'1/2'}/>
+                <CalculatorNumber onCalNumber={() => {
+                }} calNumber={'%'}/>
                 <CalculatorNumber onCalNumber={() => {
                     setValueNumber('7')
                 }} calNumber={7}/>
@@ -105,8 +114,9 @@ function App() {
                     setValueNumber('9')
                 }} calNumber={9}/>
                 <CalculatorNumber onCalNumber={() => {
-                    operatorHandler(operator.multiplication)
-                }} calNumber={operator.multiplication}/>
+                    operatorHandler(operator.division)
+                }} calNumber={operator.division}/>
+
                 <CalculatorNumber onCalNumber={() => {
                     setValueNumber('4')
                 }} calNumber={4}/>
@@ -117,8 +127,8 @@ function App() {
                     setValueNumber('6')
                 }} calNumber={6}/>
                 <CalculatorNumber onCalNumber={() => {
-                    operatorHandler(operator.division)
-                }} calNumber={operator.division}/>
+                    operatorHandler(operator.multiplication)
+                }} calNumber={operator.multiplication}/>
                 <CalculatorNumber onCalNumber={() => {
                     setValueNumber('1')
                 }} calNumber={1}/>
@@ -132,8 +142,15 @@ function App() {
                     operatorHandler(operator.subtraction)
                 }} calNumber={operator.subtraction}/>
                 <CalculatorNumber onCalNumber={() => {
+                    setValueNumber('2.71828183')
+                }} calNumber={'e'}/>
+                <CalculatorNumber onCalNumber={() => {
                     setValueNumber('0')
                 }} calNumber={0}/>
+                <CalculatorNumber onCalNumber={() => {
+                    setValueNumber('.')
+                }} calNumber={'.'}/>
+
                 <CalculatorNumber onCalNumber={() => {
                     operatorHandler(operator.addition)
                 }} calNumber={operator.addition}/>

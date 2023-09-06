@@ -1,9 +1,17 @@
 .div {
+    /*width: 333px;*/
+    height: 183px;
     text-align: right;
-    padding:0 1rem;
+    padding:0 2rem;
+    margin: 106px 30px 50px;
+    background-color: #464759;
+    box-shadow: 0 4px 4px 0 #00000040;
+    border-radius: 12px
 }
 
 
 .div h2 {
-    font-size: 3rem;
+    color: white;
+    overflow: hidden;
+    font-size: 4rem;
 }
