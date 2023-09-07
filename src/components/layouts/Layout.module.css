@@ -2,9 +2,7 @@
     width: 393px;
     height: auto;
     background-color: #373846;
-    border-radius: 1rem;
     display: inline-block;
-
 }
 
 @media only screen and (max-width: 1200px){
@@ -14,6 +12,6 @@
 }
 @media only screen and (max-width: 600px){
     .div{
-        width: 98%;
+        width: 100%;
     }
 }

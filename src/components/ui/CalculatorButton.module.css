@@ -18,7 +18,7 @@
     background-color: #6c91ff;
 }
 
-.calButtonFrame{
+.buttonContainer{
     width: 60px;
     height: 60px;
     margin-right: 14px;
@@ -27,6 +27,6 @@
     background-color: #749BFF;;
 }
 
-.calButtonFrame:hover {
+.buttonContainer:hover {
     background-color: #b4c7ff;
 }

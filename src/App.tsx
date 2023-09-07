@@ -4,7 +4,9 @@ import Layout from "./components/layouts/Layout";
 import CalculationBox from "./components/layouts/CalculationBox";
 import MainCalculator from "./components/layouts/MainCalculator";
 
-import CalculatorNumber from "./components/ui/CalculatorNumber";
+import CalculatorButton from "./components/ui/CalculatorButton";
+import * as Icons from "./assets/Icons";
+import NavigationMenu from "./components/layouts/NavigationMenu";
 
 let calculationResult: number
 let firstValue: number
@@ -21,10 +23,11 @@ function App() {
         subtraction = "-",
         multiplication = "*",
         division = "/",
+        remainder = "%",
     }
 
-    let isIncludesOperator = (value.includes(operator.addition) || value.includes(operator.subtraction) || value.includes(operator.multiplication) || value.includes(operator.division))
-    let isEndsWithOperator = (value.endsWith(operator.addition) || value.endsWith(operator.subtraction) || value.endsWith(operator.multiplication) || value.endsWith(operator.division))
+    let isIncludesOperator = (value.includes(operator.addition) || value.includes(operator.subtraction) || value.includes(operator.multiplication) || value.includes(operator.division) || value.includes(operator.remainder))
+    let isEndsWithOperator = (value.endsWith(operator.addition) || value.endsWith(operator.subtraction) || value.endsWith(operator.multiplication) || value.endsWith(operator.division) || value.endsWith(operator.remainder))
 
     function setValueNumber(num: string) {
 
@@ -69,6 +72,8 @@ function App() {
                     calculationResult = firstValue * secondValue
                 } else if (operatorCalculation === operator.division) {
                     calculationResult = firstValue / secondValue
+                } else if (operatorCalculation === operator.remainder) {
+                    calculationResult = firstValue % secondValue
                 }
                 if (moreOperator) {
                     if (opr != null) {
@@ -90,70 +95,75 @@ function App() {
 
     return (
         <Layout>
+            <NavigationMenu/>
             <CalculationBox text={value}/>
             <MainCalculator
                 onRes={resultHandler}
             >
-                <CalculatorNumber onCalNumber={
+                <Icons.ClearIc onTap={
                     deleteAllHandler
-                } calNumber={"C"}/>
-                <CalculatorNumber onCalNumber={
+                }/>
+                <Icons.ArrBackIc onTap={
                     deleteHandler
-                } calNumber={"X"}/>
-                <CalculatorNumber onCalNumber={() => {
-                }} calNumber={'1/2'}/>
-                <CalculatorNumber onCalNumber={() => {
-                }} calNumber={'%'}/>
-                <CalculatorNumber onCalNumber={() => {
+                }/>
+                <Icons.HalfIc onTap={() => {
+                    // operatorHandler(operator.division)
+                    // setValueNumber('/2')
+                    // resultHandler()
+                }}/>
+                <Icons.PercentIc onTap={() => {
+                    operatorHandler(operator.remainder)
+                }}/>
+                <CalculatorButton onCalNumber={() => {
                     setValueNumber('7')
                 }} calNumber={7}/>
-                <CalculatorNumber onCalNumber={() => {
+                <CalculatorButton onCalNumber={() => {
                     setValueNumber('8')
                 }} calNumber={8}/>
-                <CalculatorNumber onCalNumber={() => {
+                <CalculatorButton onCalNumber={() => {
                     setValueNumber('9')
                 }} calNumber={9}/>
-                <CalculatorNumber onCalNumber={() => {
+                <Icons.DivisionIC onTap={() => {
                     operatorHandler(operator.division)
-                }} calNumber={operator.division}/>
-
-                <CalculatorNumber onCalNumber={() => {
+                }}/>
+                <CalculatorButton onCalNumber={() => {
                     setValueNumber('4')
                 }} calNumber={4}/>
-                <CalculatorNumber onCalNumber={() => {
+                <CalculatorButton onCalNumber={() => {
                     setValueNumber('5')
                 }} calNumber={5}/>
-                <CalculatorNumber onCalNumber={() => {
+                <CalculatorButton onCalNumber={() => {
                     setValueNumber('6')
                 }} calNumber={6}/>
-                <CalculatorNumber onCalNumber={() => {
+
+                <Icons.MultiplicationIc onTap={() => {
                     operatorHandler(operator.multiplication)
-                }} calNumber={operator.multiplication}/>
-                <CalculatorNumber onCalNumber={() => {
+                }}/>
+                <CalculatorButton onCalNumber={() => {
                     setValueNumber('1')
                 }} calNumber={1}/>
-                <CalculatorNumber onCalNumber={() => {
+                <CalculatorButton onCalNumber={() => {
                     setValueNumber('2')
                 }} calNumber={2}/>
-                <CalculatorNumber onCalNumber={() => {
+                <CalculatorButton onCalNumber={() => {
                     setValueNumber('3')
                 }} calNumber={3}/>
-                <CalculatorNumber onCalNumber={() => {
+                <Icons.MinusIc onTap={() => {
                     operatorHandler(operator.subtraction)
-                }} calNumber={operator.subtraction}/>
-                <CalculatorNumber onCalNumber={() => {
+                }}/>
+                <CalculatorButton onCalNumber={() => {
                     setValueNumber('2.71828183')
                 }} calNumber={'e'}/>
-                <CalculatorNumber onCalNumber={() => {
+                <CalculatorButton onCalNumber={() => {
                     setValueNumber('0')
                 }} calNumber={0}/>
-                <CalculatorNumber onCalNumber={() => {
+                <CalculatorButton onCalNumber={() => {
                     setValueNumber('.')
                 }} calNumber={'.'}/>
 
-                <CalculatorNumber onCalNumber={() => {
+                <Icons.PlusIc onTap={() => {
                     operatorHandler(operator.addition)
-                }} calNumber={operator.addition}/>
+                }}/>
             </MainCalculator>
         </Layout>
     );

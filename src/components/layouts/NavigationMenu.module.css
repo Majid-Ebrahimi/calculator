@@ -1,0 +1,18 @@
+.nav {
+    text-align: right;
+    margin-right: 30px;
+}
+
+.nav ul {
+    display: inline-flex;
+    list-style: none;
+}
+
+
+.nav li {
+    margin-left: 1.5rem;
+}
+
+/*.pencil {*/
+/*    margin-top: 40px;*/
+/*}*/
