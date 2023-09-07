@@ -18,7 +18,6 @@ function App() {
     const [value, setValue] = useState("0")
 
     enum operator {
-        //TODO: fix minus bug
         addition = "+",
         subtraction = "-",
         multiplication = "*",
