@@ -26,15 +26,15 @@ function App() {
         remainder = "%",
     }
 
-    let isIncludesOperator = (value.includes(operator.addition) || value.includes(operator.subtraction) || value.includes(operator.multiplication) || value.includes(operator.division) || value.includes(operator.remainder))
+    let isIncludesOperator = (value.includes(operator.addition) || ((value.lastIndexOf(operator.subtraction) !== 0) && value.includes(operator.subtraction)) || value.includes(operator.multiplication) || value.includes(operator.division) || value.includes(operator.remainder))
     let isEndsWithOperator = (value.endsWith(operator.addition) || value.endsWith(operator.subtraction) || value.endsWith(operator.multiplication) || value.endsWith(operator.division) || value.endsWith(operator.remainder))
 
     function setValueNumber(num: string) {
 
         if (!(value.startsWith("0") && num === "0")) {
-            if (value.startsWith("0")){
-                setValue(value.replaceAll('0',num))
-            }else {
+            if (value.startsWith("0")) {
+                setValue(value.replaceAll('0', num))
+            } else {
                 setValue(value.concat(num))
             }
         }
@@ -42,7 +42,13 @@ function App() {
     }
 
     function deleteHandler() {
-        setValue(value.slice(0, value.length - 1))
+        if (value.length !== 1) {
+            setValue(value.slice(0, value.length - 1))
+        } else if (value.length === 1) {
+            setValue(value.replaceAll(value, '0'))
+        } else {
+            setValue(value.slice(0, value.length - 1))
+        }
     }
 
     function deleteAllHandler() {
@@ -50,28 +56,39 @@ function App() {
     }
 
     function operatorHandler(opr: string) {
-        if (!isEndsWithOperator) {
-            if (!isIncludesOperator) {
-                setValue(value.concat(opr))
-                firstValue = parseFloat(value)
-                operatorCalculation = opr
-                moreOperator = false
-            } else {
-                moreOperator = true
-                resultHandler(opr)
+        //Todo: fix if statements here
+        if (value.length !== 0 || opr === operator.subtraction) {
+            if (!(value.startsWith('0') && opr !== operator.subtraction)) {
+                if (value.startsWith('0') && opr === operator.subtraction) {
+                    setValue(value.replaceAll('0', opr))
+                } else if (!isEndsWithOperator) {
+                    if (!isIncludesOperator) {
+                        setValue(value.concat(opr))
+                        firstValue = parseFloat(value)
+                        operatorCalculation = opr
+                        moreOperator = false
+                    } else {
+                        moreOperator = true
+                        resultHandler(opr)
+                    }
+                }
             }
         }
+
     }
 
     function resultHandler(opr?: string) {
 
         if (!isEndsWithOperator) {
             if (isIncludesOperator) {
-                const secondValue = parseFloat(value.substring(value.indexOf(operatorCalculation) + 1, value.length))
-                if (operatorCalculation === operator.addition) {
+                let secondValue
+                if (operatorCalculation === operator.subtraction) {
+                    secondValue = parseFloat(value.substring(value.lastIndexOf(operatorCalculation), value.length))
+                } else {
+                    secondValue = parseFloat(value.substring(value.indexOf(operatorCalculation) + 1, value.length))
+                }
+                if (operatorCalculation === operator.addition || operatorCalculation === operator.subtraction) {
                     calculationResult = firstValue + secondValue
-                } else if (operatorCalculation === operator.subtraction) {
-                    calculationResult = firstValue - secondValue
                 } else if (operatorCalculation === operator.multiplication) {
                     calculationResult = firstValue * secondValue
                 } else if (operatorCalculation === operator.division) {
@@ -79,7 +96,7 @@ function App() {
                 } else if (operatorCalculation === operator.remainder) {
                     calculationResult = firstValue % secondValue
                 }
-                if (moreOperator) {
+                if (moreOperator && calculationResult !== 0) {
                     if (opr != null) {
                         operatorCalculation = opr
                     }
