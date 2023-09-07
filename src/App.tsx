@@ -103,7 +103,12 @@ function App() {
                     moreOperator = false
                     firstValue = calculationResult
                 } else {
-                    setValue(calculationResult.toString())
+                    if (calculationResult.toString().includes('.')) {
+                        setValue(calculationResult.toFixed(3).toString())
+                    } else {
+                        setValue(calculationResult.toString())
+                    }
+
                     if (opr != null) {
                         operatorCalculation = opr
                     }
