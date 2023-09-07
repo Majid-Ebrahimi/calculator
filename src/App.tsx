@@ -31,8 +31,12 @@ function App() {
 
     function setValueNumber(num: string) {
 
-        if (!(value.length === 1 && num === "0")) {
-            setValue(value.concat(num))
+        if (!(value.startsWith("0") && num === "0")) {
+            if (value.startsWith("0")){
+                setValue(value.replaceAll('0',num))
+            }else {
+                setValue(value.concat(num))
+            }
         }
 
     }
