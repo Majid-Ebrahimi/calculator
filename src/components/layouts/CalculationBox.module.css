@@ -1,16 +1,59 @@
 .div {
     height: 183px;
-    text-align: right;
-    padding:0 2rem;
-    margin: 0 30px 50px;
+    text-align: left;
+    padding: 1rem 2rem 0 2rem;
+    margin: 20px 30px 40px 30px;
     background-color: #464759;
     box-shadow: 0 4px 4px 0 #00000040;
-    border-radius: 12px
+    border-radius: 12px;
+    flex-wrap: wrap;
 }
 
 
-.div h2 {
+.calculationLine {
     color: white;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0;
+    text-align: left;
+    margin: 0 0 0 0;
     overflow: hidden;
-    font-size: 4rem;
+    flex-wrap: wrap;
+
+    /*display: inline-block;*/
+}
+
+.smallCalculationLine {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: left;
+    color: white;
+    margin: 0 0 0 0;
+    overflow: hidden;
+    flex-wrap: wrap;
+}
+
+.result {
+    color: rgba(175, 186, 225, 1);
+    margin: 5px 0 0 8px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: left;
+    overflow: hidden;
+}
+
+.bigResult {
+    color: white;
+    margin: 5px 0 0 8px;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0;
+    text-align: left;
+    overflow: hidden;
 }

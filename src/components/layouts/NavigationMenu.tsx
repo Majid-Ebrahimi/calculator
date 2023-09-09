@@ -5,16 +5,16 @@ function NavigationMenu() {
     return <div className={classes.nav}>
         <ul>
             <li>
-                <Icons.PencilIc/>
+                    <Icons.PencilIc/>
             </li>
             <li>
-                <Icons.SqrMenuIc/>
+                    <Icons.SqrMenuIc/>
             </li>
             <li>
-                <Icons.DollarIc/>
+                    <Icons.DollarIc/>
             </li>
             <li>
-                <Icons.DotMenuIc/>
+                    <Icons.DotMenuIc/>
             </li>
         </ul>
     </div>

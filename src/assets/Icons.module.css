@@ -1,12 +1,10 @@
 .iconContainer {
     width: 60px;
     height: 60px;
-    margin-right: 14px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     border-radius: 10px;
-    /*padding: 1rem;*/
-    /*background-color: #749BFF;;*/
 }
 .iconContainer:active {
-    background-color: #b4c7ff;
+    background-color: rgba(255, 255, 255, 0.62);
+    border-radius: 100%;
 }
