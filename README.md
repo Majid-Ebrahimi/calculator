@@ -1,9 +1,17 @@
-# Getting Started with Create React App
+# Simple Calculator with React js  
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![calculator SPA](src/assets/Calculator.png)
+
+designed by: [atenarashvandi@gmail.com](mailto:atenarashvandi@gmail.com)
+
+
+
+
+
+
 
 ## Available Scripts
-
+    
 In the project directory, you can run:
 
 ### `npm start`
